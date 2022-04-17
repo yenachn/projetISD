@@ -1,6 +1,6 @@
 #redefine coordinate weights
 def dist(tup1, tup2):
-  return ((tup1[0]-tup2[0])**2+(tup1[1]-tup2[1])**2 + (tup1[2]-tup2[2])**2 + 1.5*(tup1[3]-tup2[3])**2 + 1.5*(tup1[4]-tup2[4])**2)**(1/5)
+  return ((tup1[0]-tup2[0])**2+(tup1[1]-tup2[1])**2 + (tup1[2]-tup2[2])**2 + 1.5*(tup1[3]-tup2[3])**2 + 1.5*(tup1[4]-tup2[4])**2)**(1/2)
 
 #define epsilon, to hand tune later
 eps = 0
@@ -22,8 +22,7 @@ def crop_outl(graph):
 
 def parcourir(graph, node, cluster, visited):
   neighbor_indices = graph[node]
-  for neighbor_index in neighbor_indices:
-    neighbor_node = graph[neighbor_index]
+  for neighbor_node in neighbor_indices:
     if not visited[neighbor_node]:
       visited[neighbor_node] = True
       cluster.append(neighbor_node)
