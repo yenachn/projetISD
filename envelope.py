@@ -51,15 +51,13 @@ def reduction(envelope):
 def distance(p1, p2):
   return m.sqrt((p2[3]-p1[3])**2 + (p2[4]-p2[4])**2)
 
-def minmax_ratio(envelope):
-  max, min = (envelope[0], envelope[1], distance(envelope[0], envelope[1]))
+def max_length(envelope):
+  max = (envelope[0], envelope[1], distance(envelope[0], envelope[1]))
   for vertice in envelope:
     for another_vertice in envelope:
       if distance(vertice, another_vertice) > max[2]:
         max = (vertice, another_vertice, distance(vertice, another_vertice))
-      elif distance(vertice, another_vertice) < min[2]:
-        min = (vertice, another_vertice, distance(vertice, another_vertice))
-  return min/max
+  return max
 
 
 
