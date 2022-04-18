@@ -1,17 +1,49 @@
 from PIL import Image
-from scipy.ndimage import gaussian_filter
-import numpy as np
-
-def colored(color, img):
+import numpy as np  
+  
+def blue(img):
+  blue = {}
   hsv = img.convert('HSV')
   hsv = np.array(hsv)
-  
+  sensitivity = 15
+  for x in len(hsv[:,0]):
+    for y in len(hsv[0, :]):
+      if 221 < hsv[x,y][0] < 240 and sensitivity < hsv[x,y][1] < 255-sensitivity and sensitivity < hsv[x,y][2] < 255 - sensitivity:
+        blue[(x,y)] = hsv[x,y]
+  return blue
 
+def yellow(img):
+  yellow = {}
+  hsv = img.convert('HSV')
+  hsv = np.array(hsv)
+  sensitivity = 15
+  for x in len(hsv[:,0]):
+    for y in len(hsv[0, :]):
+      if 51 < hsv[x,y][0] < 60 and sensitivity < hsv[x,y][1] < 255-sensitivity and sensitivity < hsv[x,y][2] < 255 - sensitivity:
+        yellow[(x,y)] = hsv[x,y]
+  return yellow
 
-def partitionbycolor(color, img):
-  partitioned = {}
-  partitioned[blue] = colored(blue, img)
-  partitioned[yellow] = colored(yellow, img)
-  partitioned[white] = colored(white, img)
-  return partitioned
+def white(img):
+  white = {}
+  hsv = img.convert('HSV')
+  hsv = np.array(hsv)
+  sensitivity = 15
+  for x in len(hsv[:,0]):
+    for y in len(hsv[0, :]):
+      if 0 < hsv[x,y][1] < sensitivity and 255 - sensitivity < hsv[x,y][2] < 255:
+        white[(x,y)] = hsv[x,y]
+  return white
 
+def points(img):
+  listpts = []
+  px = img.load()
+  step = 2
+  for x in range(0, img.width, step):
+    for y in range(0, img.height, step):
+      if (x,y) in blue(img):
+        listpts.append((px[x,y][0], px[x,y][1], px[x,y][2], x, y))
+      elif (x,y) in yellow(img):
+        listpts.append((px[x,y][0], px[x,y][1], px[x,y][2], x, y))
+      elif (x,y) in white(img):
+        listpts.append((px[x,y][0], px[x,y][1], px[x,y][2], x, y))
+  return listpts
