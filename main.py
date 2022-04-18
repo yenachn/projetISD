@@ -10,6 +10,16 @@ from color_sort import *
 from clusters import*
 from envelopes import *
 
-img = Image.open("media/a01.png")
+# load tous les images
 
-print(points(img))
+# points(img) pour tous les images (c'est par boucle? paslu les tps)
+
+# graph(points(img)) (pr chaque image, encore)
+
+# clusters(graph) evident
+
+# envelopes(clusters, graph) je repete
+
+# reduction(envelopes) utile pour identifier la forme mais j'ai pas vraiment utilise ca en caracteristiques
+
+# apres avec les fonctions de chara tu extrais les attributs et les met dans un csv
