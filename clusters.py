@@ -32,7 +32,10 @@ def cluster(graph, node, visited):
   cluster = []
   parcourir(graph, node, cluster, visited)
   return cluster
-  
+
+def cluster_size(cluster):
+  return cluster.length()
+
 def clusters(graph):
   clusters = []
   visited = {}
@@ -42,3 +45,4 @@ def clusters(graph):
     if not visited[key]:
       clusters.append(cluster(graph, key, visited))
   return clusters
+

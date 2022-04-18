@@ -1,16 +1,17 @@
+from PIL import Image
+from scipy.ndimage import gaussian_filter
+import numpy as np
 
-#color filter
 def colored(color, img):
-  for pxl in img:
-    
+  hsv = img.convert('HSV')
+  hsv = np.array(hsv)
+  
 
-#pixels to points
-def pxltopts(img):
-  listpts = []
-  px = img.load()
-  #modify step size based on image res
-  for x in range(0, img.width, 2):
-    for y in range(0, img.height, 2):
-      if ():
-        listpts.append((px[x,y][0], px[x,y][1], px[x,y][2], x, y))
-  return listpts
+
+def partitionbycolor(color, img):
+  partitioned = {}
+  partitioned[blue] = colored(blue, img)
+  partitioned[yellow] = colored(yellow, img)
+  partitioned[white] = colored(white, img)
+  return partitioned
+
