@@ -3,7 +3,7 @@ def dist(tup1, tup2):
   return ((tup1[0]-tup2[0])**2+(tup1[1]-tup2[1])**2 + (tup1[2]-tup2[2])**2 + 1.5*(tup1[3]-tup2[3])**2 + 1.5*(tup1[4]-tup2[4])**2)**(1/2)
 
 #define epsilon, to hand tune later
-eps = 10
+eps = 15
 
 def graph(arr):
   res = {}
