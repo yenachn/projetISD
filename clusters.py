@@ -3,7 +3,7 @@ def dist(tup1, tup2):
   return ((tup1[0]-tup2[0])**2+(tup1[1]-tup2[1])**2 + (tup1[2]-tup2[2])**2 + 1.5*(tup1[3]-tup2[3])**2 + 1.5*(tup1[4]-tup2[4])**2)**(1/2)
 
 #define epsilon, to hand tune later
-eps = 0
+eps = 10
 
 def graph(arr):
   res = {}
@@ -37,6 +37,7 @@ def cluster_size(cluster):
   return cluster.length()
 
 def clusters(graph):
+  delta = 50
   clusters = []
   visited = {}
   for key in graph:
@@ -44,5 +45,8 @@ def clusters(graph):
   for key in visited:
     if not visited[key]:
       clusters.append(cluster(graph, key, visited))
+  for cluster in clusters:
+    if len(cluster)<delta:
+      clusters.pop(cluster)
   return clusters
 
